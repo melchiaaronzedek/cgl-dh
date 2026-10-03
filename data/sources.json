@@ -1,0 +1,338 @@
+[
+ {
+  "g": "Official, from ssc.gov.in",
+  "note": "The only sources that settle a disagreement. ssc.gov.in itself is a JavaScript app, so these are the direct PDF links.",
+  "items": [
+   {
+    "title": "CGL 2026 notice, 21 May 2026",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_cgl_2026.pdf",
+    "what": "Para 13.8 is the Tier 1 scheme with the new 15-minute sectional timer; 13.10 is the syllabus; 16.1 the qualifying marks."
+   },
+   {
+    "title": "Tier 1 schedule notice, 12 Sep 2026",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Important%20Notice%202026_cgle_2026_12092026.pdf",
+    "what": "Tier 1 runs 30 September to 30 October 2026."
+   },
+   {
+    "title": "City slip and admit card notice, 21 Sep 2026",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/cgle_2026_city_live_21092026.pdf",
+    "what": "City details are live now; the admit card comes 2-3 days before your own date."
+   },
+   {
+    "title": "Tentative vacancies, 24 Sep 2026",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Tentative_vacancy_CGLE2026_24092026.pdf",
+    "what": "10,731 posts by post and category. UR 4,412, OBC 2,772, SC 1,715, EWS 1,028, ST 804."
+   },
+   {
+    "title": "Normalization procedure, June 2025",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Normalization_procedure_for_SSC_exams_from_June_2025.pdf",
+    "what": "Equipercentile method: your raw score becomes a percentile in your own shift, then is mapped across shifts, per section."
+   },
+   {
+    "title": "Normalization, explained in plain language",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_10092025.pdf",
+    "what": "Two-page note from SSC on why the method changed."
+   },
+   {
+    "title": "CGL 2025 Tier 1 result and cut-offs",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/writeup_181225.pdf",
+    "what": "Category-wise normalized cut-offs for JSO, Statistical Investigator and all other posts."
+   },
+   {
+    "title": "CGL 2025 cut-off corrigendum",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Corrigendum.pdf",
+    "what": "Corrected all-other-posts line: UR 136.40, OBC 130.37, EWS 127.42, SC 115.03, ST 106.39."
+   },
+   {
+    "title": "CGL 2024 Tier 1 additional result",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/Results/Writeup_Additional%20result_17012025.pdf",
+    "what": "2024 cut-offs, original and revised: UR 152.97 for all other posts."
+   },
+   {
+    "title": "Answer-key challenge rules, Apr 2026",
+    "url": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/notice_10042026.pdf",
+    "what": "A wrong or ambiguous question is dropped and its marks go to everyone."
+   },
+   {
+    "title": "Official mock interface, how to open it",
+    "url": "https://www.careerpower.in/blog/ssc-examinations-mock-test-new-interface-launched-by-ssc",
+    "what": "ssc.gov.in, For Candidates, Mock Test, password ABC1. A 15-minute demo of the real screen, not a practice paper. Worth one run before your shift."
+   }
+  ]
+ },
+ {
+  "g": "Worth buying, with fifteen days left",
+  "note": "If you buy only three things, about ₹1,350 in total, or about ₹600 using the free Parmar mocks instead of Testbook. Everything else below is a skip: too long to finish in fifteen days, or it repeats these.",
+  "items": [
+   {
+    "title": "Pinnacle SSC CGL Tier 1 2026, 4800 MCQ chapter-wise",
+    "url": "https://vikasbookdepo.com/products/pinnacle-ssc-cgl-tier-1-2026-book-4800-eduquity-based-pattern-mcq-chapter-wise-exam-conducted-12-09-2025-to-14-10-2025-detailed-explanation-english-medium-4th-edition",
+    "what": "Every question from all CGL 2025 shifts, the new vendor's pattern, sorted by chapter for all four sections. The single best buy.",
+    "tag": "Buy",
+    "price": "about ₹420-490"
+   },
+   {
+    "title": "Testbook Pass, one year",
+    "url": "https://testbook.com/pass",
+    "what": "CGL 2025 past papers in the exam interface plus live all-India mocks. Worth it if you want more than about six full mocks.",
+    "tag": "Buy",
+    "price": "₹749"
+   },
+   {
+    "title": "Parmar SSC Current Affair Shot 2026",
+    "url": "https://www.flipkart.com/parmar-ssc-current-affair-shot-english-medium-1st-edition-2026/p/itmac744a4f108ff",
+    "what": "Compact, SSC-filtered current affairs to about July 2026. Top up August and September with the Parmar monthly videos.",
+    "tag": "Buy",
+    "price": "about ₹176-199"
+   },
+   {
+    "title": "Parmar All India Mega Mock Test 2026, 17 free",
+    "url": "https://www.parmaracademy.in/test-series/121/tests",
+    "what": "17 full CGL mocks, free with a login. Enough on their own if you skip Testbook.",
+    "tag": "Free, sign-in",
+    "price": ""
+   },
+   {
+    "title": "GK Now, last six months current affairs",
+    "url": "https://gknow.in/last-6-months-current-affairs-pdf/",
+    "what": "March to August 2026, 219 pages with 600+ MCQs. The best free alternative to the Parmar book.",
+    "tag": "",
+    "price": ""
+   },
+   {
+    "title": "Pinnacle General Studies 6500+",
+    "url": "https://www.flipkart.com/ssc-general-studies-6500-epb-mcq-eduquity-based-pattern-chapter-wise-detailed-explanation-8th-english-medium/p/itmfd52b6a80bca0",
+    "what": "Only if GA is your weakest section and you will do about 300 GA questions a day. Otherwise the 4800 book already covers it.",
+    "tag": "Optional",
+    "price": "about ₹476"
+   },
+   {
+    "title": "Skip: Lucent, NCERT reading, Neetu Singh, Blackbook, 6800/7600 subject books, Adda247 Mahapack, any app course",
+    "url": "https://www.adda247.com/product-onlineliveclasses/3543/ssc-cgl-maha-pack",
+    "what": "Good books for a long preparation. None can be finished in fifteen days, and the Mahapack alone is ₹7,138.",
+    "tag": "Skip",
+    "price": ""
+   }
+  ]
+ },
+ {
+  "g": "Past papers",
+  "note": "SSC moved the exam from TCS to Eduquity from CGL 2025, so the 2025 shifts are the closest match to your paper. This site holds all 36 shifts of 2024 as timed mocks; do the 2025 ones from the first two links.",
+  "items": [
+   {
+    "title": "CGL 2025, all 46 shifts, one PDF each",
+    "url": "https://xamtoppr.com/blog/details/ssc-cgl-all-46-shifts-question-paper-2025-tier-1-pdf",
+    "what": "The real SSC response sheets for 12-26 Sep 2025 and the 14 Oct re-exam, correct option marked. Scanned, so print or read on screen."
+   },
+   {
+    "title": "CGL 2025 GA section only, all 46 shifts",
+    "url": "https://drive.google.com/file/d/1no_Hvs2e3aBy-VrHvecGiYZixGHVuUUw/view?usp=sharing",
+    "what": "488 pages: every GA question from last year's exam with the key. The best single GA resource there is."
+   },
+   {
+    "title": "CGL 2025 all shifts, officially marked answers",
+    "url": "https://sscstudy.com/ssc-cgl-previous-year-question-paper-pdf-2025-tier-i-all-shifts/",
+    "what": "Bilingual shift-wise PDFs, no login."
+   },
+   {
+    "title": "Shift-wise papers 2019-2025",
+    "url": "https://www.adda247.com/jobs/ssc-cgl-previous-year-question-paper/",
+    "what": "450+ Tier 1 shift PDFs in English and Hindi. Note the year labels follow the exam date, not the notification."
+   },
+   {
+    "title": "CGL 2021 cycle, all 21 shifts, English",
+    "url": "https://drive.google.com/file/d/1Fg1FjN3fsDd3sOBJTfRLIOmvC5TWunkk/view?usp=sharing",
+    "what": "664 pages with the answer key, the April 2022 sitting Adda247 skips."
+   },
+   {
+    "title": "Section-wise PYQ tests, 15 minutes each",
+    "url": "https://trickyssc.com/ssc-cgl-quant-previous-year-questions.html",
+    "what": "Every real shift split into a 25-question, 15-minute section test. Quant here; the same site has Reasoning, English and GA sets.",
+    "tag": "Free, sign-in"
+   },
+   {
+    "title": "GA PYQ section tests",
+    "url": "https://trickyssc.com/ssc-cgl-gk-previous-year-questions.html",
+    "what": "141 GA sections from 2017-2025, timed at 15 minutes, with solutions.",
+    "tag": "Free, sign-in"
+   },
+   {
+    "title": "Maths PYQs by chapter, 243 pages",
+    "url": "https://sscstudy.com/ssc-cgl-maths-topic-wise-questions-pdf/",
+    "what": "Percentage through DI, grouped by topic, English."
+   },
+   {
+    "title": "English PYQs by topic",
+    "url": "https://sscstudy.com/ssc-english-solved-paper-pdf-download/",
+    "what": "Three free PDFs, including every English MCQ of 2022 by topic."
+   }
+  ]
+ },
+ {
+  "g": "Free full mocks on the 2026 pattern",
+  "note": "All of these run four locked 15-minute sections. Use one or two for an all-India rank; the past papers here are the better daily diet.",
+  "items": [
+   {
+    "title": "MockTestZone, 10 free mocks",
+    "url": "https://www.mocktestzone.in/ssc-cgl-mock-test-2026",
+    "what": "Mock 1 needs no sign-up, 2-10 a free sign-in. Questions are generated rather than past papers.",
+    "tag": "Free, sign-in"
+   },
+   {
+    "title": "TrickySSC, 4 free full mocks",
+    "url": "https://trickyssc.com/ssc-cgl-mock-test",
+    "what": "Complete papers with rank, section analysis and explanations.",
+    "tag": "Free, sign-in"
+   },
+   {
+    "title": "Testbook, 15 free tests",
+    "url": "https://testbook.com/ssc-cgl/test-series",
+    "what": "Includes weekly live mocks with a large field to rank against.",
+    "tag": "Free, sign-in"
+   },
+   {
+    "title": "Oliveboard free live tests",
+    "url": "https://www.oliveboard.in/ssc-cgl-live-test/",
+    "what": "Full Tier 1 every Friday to Sunday, a Quant sectional midweek. All-India rank.",
+    "tag": "Free, sign-in"
+   },
+   {
+    "title": "Adda247, 3 free mocks",
+    "url": "https://www.adda247.com/ssc-cgl/mock-test",
+    "what": "New interface with the sectional timer.",
+    "tag": "Free, sign-in"
+   }
+  ]
+ },
+ {
+  "g": "Current affairs",
+  "note": "Current affairs was 7-8 of the 25 GA questions in 2025. Cover the last eight months, not the last two years.",
+  "items": [
+   {
+    "title": "PW monthly SSC current affairs PDFs",
+    "url": "https://www.pw.live/ssc/exams/ssc-monthly-current-affairs",
+    "what": "January 2025 to August 2026, month by month, English and Hindi, no login."
+   },
+   {
+    "title": "GKToday daily current affairs",
+    "url": "https://www.gktoday.in/current-affairs/",
+    "what": "Updated daily to this week, with a daily quiz. Use it for September, which the monthly PDFs have not reached yet."
+   },
+   {
+    "title": "Last six months, consolidated",
+    "url": "https://generalknowledge.in/current-affairs/last-six-months-current-affairs-pdf",
+    "what": "January to July 2026 monthly PDFs, no sign-up."
+   },
+   {
+    "title": "Oliveboard monthly PDFs",
+    "url": "https://www.oliveboard.in/blog/monthly-current-affairs/",
+    "what": "December 2025 to August 2026, each with a quiz."
+   },
+   {
+    "title": "TestNeeti, SSC CGL-tagged monthly PDFs",
+    "url": "https://testneeti.in/current-affairs/pdf/exam/ssc-cgl",
+    "what": "April to September 2026, filtered to what SSC tends to ask."
+   }
+  ]
+ },
+ {
+  "g": "English and vocab",
+  "note": "Most SSC vocab repeats. Lists built from past papers beat any general word list.",
+  "items": [
+   {
+    "title": "Vocabulary and idioms handbook, July 2026",
+    "url": "https://sscace.in/resources-pdf/ssc-cgl/tier-1/study-material/Handbook_SSC_CGL_Tier1_Vocabulary_Idioms.pdf",
+    "what": "105 words with synonyms and antonyms, 66 idioms, all from CGL papers. Ten pages: finish it twice."
+   },
+   {
+    "title": "1,600+ one-word substitutions from SSC papers",
+    "url": "https://sscstudy.com/one-word-substitution-pdf-for-ssc-cgl/",
+    "what": "Fifteen years of SSC one-word questions, plus a solved practice book."
+   },
+   {
+    "title": "800+ idioms from SSC papers",
+    "url": "https://sscstudy.com/idioms-and-phrases-for-ssc-pdf-download/",
+    "what": "Idioms asked in SSC exams, with meanings."
+   },
+   {
+    "title": "Every synonym, antonym, idiom and OWS asked in CGL",
+    "url": "https://www.practicemock.com/blog/all-vocabulary-questions-asked-in-ssc-cgl-last-year-exams/",
+    "what": "Four PDFs, one per type.",
+    "tag": "Free, sign-in"
+   }
+  ]
+ },
+ {
+  "g": "Static GK and science",
+  "note": "Science was 5-8 GA questions per shift, Biology the biggest part of it. NCERT is where SSC's science questions come from.",
+  "items": [
+   {
+    "title": "NCERT textbooks",
+    "url": "https://ncert.nic.in/textbook.php",
+    "what": "Class 9 and 10 Science for biology, physics and chemistry basics; Class 11 An Introduction to Indian Art for culture."
+   },
+   {
+    "title": "Free GA book: culture, awards, books, sports",
+    "url": "https://gkbooks.in/download-the-free-general-awareness-book-pdf-for-2025-2026/",
+    "what": "56 pages of the static areas that recur most."
+   },
+   {
+    "title": "Testbook static GK pages",
+    "url": "https://testbook.com/static-gk",
+    "what": "Firsts, national symbols, UN bodies, heritage sites, national parks."
+   }
+  ]
+ },
+ {
+  "g": "Formula sheets",
+  "note": "The flashcards here carry the core set. These go wider.",
+  "items": [
+   {
+    "title": "100+ geometry formulas",
+    "url": "https://www.practicemock.com/blog/ssc-cgl-geometry-formulas/",
+    "what": "Triangle centres, circles, polygons, on one page."
+   },
+   {
+    "title": "Maths formulas and short tricks",
+    "url": "https://www.practicemock.com/blog/ssc-cgl-maths-short-tricks-and-formulas/",
+    "what": "Identities and 2D and 3D mensuration tables."
+   },
+   {
+    "title": "Trigonometry identities",
+    "url": "https://edurev.in/t/323926/Formulas-Trigonometry-Formulas-and-Identities",
+    "what": "Standard values and every identity SSC uses."
+   }
+  ]
+ },
+ {
+  "g": "Analysis, cut-offs and the new timer",
+  "note": "What a good score looks like, and how the 2026 section lock changes strategy.",
+  "items": [
+   {
+    "title": "CGL 2025 shift analysis from 82,706 scores",
+    "url": "https://www.oliveboard.in/blog/ssc-cgl-shift-analysis/",
+    "what": "Median GA per shift ran 6.5 to 18.5 of 50. That spread is where rank is decided."
+   },
+   {
+    "title": "The 2026 sectional timer, and how to manage it",
+    "url": "https://www.practicemock.com/blog/ssc-cgl-2026-sectional-timings-strategy/",
+    "what": "Unused time is lost, the section locks at 15:00, and you cannot go back."
+   },
+   {
+    "title": "First exam already run on the new format",
+    "url": "https://testbook.com/news/ssc-phase-14-exam-analysis-2026/",
+    "what": "Selection Post Phase 14, 16-26 Sep 2026: same 4 × 25, 15 minutes each. The closest preview of your paper."
+   },
+   {
+    "title": "CGL 2025 good attempts",
+    "url": "https://www.adda247.com/exams/ssc/ssc-cgl-exam-analysis-2025/",
+    "what": "Reasoning 22-24, Quant 20-21, English 20-21, GA 14-16."
+   },
+   {
+    "title": "Cut-offs 2023 to 2025, every list",
+    "url": "https://www.practicemock.com/blog/ssc-cgl-cut-off/",
+    "what": "Other posts, JSO and Statistical Investigator by category."
+   }
+  ]
+ }
+]

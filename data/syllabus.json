@@ -1,0 +1,414 @@
+{
+ "source": "SSC CGL 2026 notice, Tier 1 scheme and syllabus",
+ "pattern": "Four sections of 25 questions, 2 marks each: 200 marks in 60 minutes, now split into four locked 15-minute sections. 0.50 deducted per wrong answer. Computer based, English and Hindi except the English section.",
+ "weight": {
+  "R": {
+   "Series": "5.2",
+   "Mathematical Operations": "5.0",
+   "Classification": "3.6",
+   "Syllogism": "3.1",
+   "Blood Relations": "2.4",
+   "Coding-Decoding": "2.3",
+   "Analogy": "1.5",
+   "Word Arrangement": "1.1",
+   "Seating Arrangement": "under 1",
+   "Order & Ranking": "under 1",
+   "Missing Number": "under 1"
+  },
+  "G": {
+   "Art & Culture": "3.6",
+   "Polity": "3.4",
+   "Current Affairs": "3.1",
+   "Economy": "3.0",
+   "Geography": "2.8",
+   "Sports": "2.6",
+   "History": "2.4",
+   "Books & Authors": "1.0",
+   "Physics": "under 1",
+   "Computer & Technology": "under 1",
+   "Biology": "under 1",
+   "Static GK": "under 1",
+   "Awards": "under 1",
+   "Chemistry": "under 1"
+  },
+  "Q": {
+   "Mensuration": "4.3",
+   "Geometry": "3.8",
+   "Simplification": "2.2",
+   "Ratio & Proportion": "2.2",
+   "Profit & Loss": "2.1",
+   "Simple & Compound Interest": "1.6",
+   "Trigonometry": "1.5",
+   "Algebra": "1.4",
+   "Mixture & Alligation": "1.1",
+   "Average": "1.0",
+   "Time & Work": "1.0",
+   "Percentage": "under 1",
+   "Number System": "under 1",
+   "Time Speed & Distance": "under 1",
+   "Height & Distance": "under 1",
+   "Data Interpretation": "under 1"
+  },
+  "E": {
+   "Reading Comprehension": "4.5",
+   "Synonyms": "2.2",
+   "Direct & Indirect Speech": "2.2",
+   "Active & Passive Voice": "2.0",
+   "Fill in the Blanks": "2.0",
+   "Sentence Rearrangement": "1.9",
+   "Spot the Error": "1.8",
+   "Spelling": "1.8",
+   "Sentence Improvement": "1.7",
+   "One Word Substitution": "1.7",
+   "Idioms & Phrases": "1.4",
+   "Antonyms": "1.2",
+   "Cloze Test": "under 1"
+  }
+ },
+ "sections": [
+  {
+   "k": "R",
+   "name": "General Intelligence & Reasoning",
+   "official": "Verbal and non-verbal: analogies, similarities and differences, space visualisation, spatial orientation, problem solving, analysis, judgement, decision making, visual memory, discrimination, observation, relationship concepts, arithmetical reasoning, figural classification, number and non-verbal series, coding-decoding, statement conclusion, syllogistic reasoning, Venn diagrams, punched hole and pattern folding, embedded figures, indexing, address and date matching, critical, emotional and social intelligence.",
+   "topics": [
+    {
+     "n": "Series",
+     "w": "5.2",
+     "tip": "Number, letter and figural"
+    },
+    {
+     "n": "Mathematical Operations",
+     "w": "5.0",
+     "tip": "Sign interchange, balancing equations"
+    },
+    {
+     "n": "Classification",
+     "w": "3.6",
+     "tip": "Odd one out: words, numbers, letter groups, figures"
+    },
+    {
+     "n": "Syllogism",
+     "w": "3.1",
+     "tip": ""
+    },
+    {
+     "n": "Blood Relations",
+     "w": "2.4",
+     "tip": ""
+    },
+    {
+     "n": "Coding-Decoding",
+     "w": "2.3",
+     "tip": ""
+    },
+    {
+     "n": "Analogy",
+     "w": "1.5",
+     "tip": "Semantic, number and figural"
+    },
+    {
+     "n": "Word Arrangement",
+     "w": "1.1",
+     "tip": "Dictionary order, word building"
+    },
+    {
+     "n": "Seating Arrangement",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Order & Ranking",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Missing Number",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Mirror & Water Image",
+     "w": "",
+     "tip": ""
+    },
+    {
+     "n": "Dice & Cube",
+     "w": "",
+     "tip": ""
+    },
+    {
+     "n": "Figure Counting",
+     "w": "",
+     "tip": "Triangles, squares"
+    },
+    {
+     "n": "Paper Folding & Cutting",
+     "w": "",
+     "tip": "Punched hole, pattern folding"
+    },
+    {
+     "n": "Pattern & Figure Completion",
+     "w": "",
+     "tip": ""
+    },
+    {
+     "n": "Embedded Figures",
+     "w": "",
+     "tip": ""
+    },
+    {
+     "n": "Venn Diagram",
+     "w": "",
+     "tip": ""
+    },
+    {
+     "n": "Direction & Distance",
+     "w": "",
+     "tip": ""
+    }
+   ]
+  },
+  {
+   "k": "G",
+   "name": "General Awareness",
+   "official": "Awareness of the environment and its application to society; current events; everyday observation and its scientific aspect; India and its neighbours, especially history, culture, geography, economic scene, general policy and scientific research.",
+   "topics": [
+    {
+     "n": "Art & Culture",
+     "w": "3.6",
+     "tip": "Dances, festivals, music, monuments"
+    },
+    {
+     "n": "Polity",
+     "w": "3.4",
+     "tip": "Constitution, articles, schedules, bodies"
+    },
+    {
+     "n": "Current Affairs",
+     "w": "3.1",
+     "tip": "Roughly the last 12 months before the exam"
+    },
+    {
+     "n": "Economy",
+     "w": "3.0",
+     "tip": "Budget, banking, schemes, basics"
+    },
+    {
+     "n": "Geography",
+     "w": "2.8",
+     "tip": "India and world, physical and economic"
+    },
+    {
+     "n": "Sports",
+     "w": "2.6",
+     "tip": ""
+    },
+    {
+     "n": "History",
+     "w": "2.4",
+     "tip": "Ancient, medieval, modern, freedom struggle"
+    },
+    {
+     "n": "Books & Authors",
+     "w": "1.0",
+     "tip": ""
+    },
+    {
+     "n": "Physics",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Computer & Technology",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Biology",
+     "w": "under 1",
+     "tip": "Usually the biggest science block"
+    },
+    {
+     "n": "Static GK",
+     "w": "under 1",
+     "tip": "Firsts, days, organisations, capitals"
+    },
+    {
+     "n": "Awards",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Chemistry",
+     "w": "under 1",
+     "tip": ""
+    }
+   ]
+  },
+  {
+   "k": "Q",
+   "name": "Quantitative Aptitude",
+   "official": "Whole numbers, decimals, fractions and number relationships; percentage, ratio and proportion, square roots, averages, interest, profit and loss, discount, partnership, mixture and alligation, time and distance, time and work; algebraic identities and surds, graphs of linear equations; triangle centres, congruence and similarity, circles, chords, tangents, quadrilaterals, regular polygons; prism, cone, cylinder, sphere, hemisphere, cuboid, pyramid; trigonometric ratios, degree and radian, identities, complementary angles, heights and distances; histogram, frequency polygon, bar and pie charts.",
+   "topics": [
+    {
+     "n": "Mensuration",
+     "w": "4.3",
+     "tip": "2D and 3D"
+    },
+    {
+     "n": "Geometry",
+     "w": "3.8",
+     "tip": "Triangles and centres, circles, polygons"
+    },
+    {
+     "n": "Simplification",
+     "w": "2.2",
+     "tip": "Surds, indices, BODMAS"
+    },
+    {
+     "n": "Ratio & Proportion",
+     "w": "2.2",
+     "tip": "Including partnership"
+    },
+    {
+     "n": "Profit & Loss",
+     "w": "2.1",
+     "tip": "Including discount and successive discount"
+    },
+    {
+     "n": "Simple & Compound Interest",
+     "w": "1.6",
+     "tip": ""
+    },
+    {
+     "n": "Trigonometry",
+     "w": "1.5",
+     "tip": "Ratios, identities, complementary angles"
+    },
+    {
+     "n": "Algebra",
+     "w": "1.4",
+     "tip": "Identities, a+1/a, linear equations"
+    },
+    {
+     "n": "Mixture & Alligation",
+     "w": "1.1",
+     "tip": ""
+    },
+    {
+     "n": "Average",
+     "w": "1.0",
+     "tip": ""
+    },
+    {
+     "n": "Time & Work",
+     "w": "1.0",
+     "tip": "Including pipes and cisterns"
+    },
+    {
+     "n": "Percentage",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Number System",
+     "w": "under 1",
+     "tip": "Divisibility, remainders, HCF-LCM"
+    },
+    {
+     "n": "Time Speed & Distance",
+     "w": "under 1",
+     "tip": "Including trains and boats"
+    },
+    {
+     "n": "Height & Distance",
+     "w": "under 1",
+     "tip": ""
+    },
+    {
+     "n": "Data Interpretation",
+     "w": "under 1",
+     "tip": "Bar, pie, table, line"
+    },
+    {
+     "n": "Statistics",
+     "w": "",
+     "tip": "Mean, median, mode"
+    }
+   ]
+  },
+  {
+   "k": "E",
+   "name": "English Comprehension",
+   "official": "Understanding of correct English, basic comprehension and writing ability.",
+   "topics": [
+    {
+     "n": "Reading Comprehension",
+     "w": "4.5",
+     "tip": ""
+    },
+    {
+     "n": "Synonyms",
+     "w": "2.2",
+     "tip": ""
+    },
+    {
+     "n": "Direct & Indirect Speech",
+     "w": "2.2",
+     "tip": ""
+    },
+    {
+     "n": "Active & Passive Voice",
+     "w": "2.0",
+     "tip": ""
+    },
+    {
+     "n": "Fill in the Blanks",
+     "w": "2.0",
+     "tip": ""
+    },
+    {
+     "n": "Sentence Rearrangement",
+     "w": "1.9",
+     "tip": "Para jumbles"
+    },
+    {
+     "n": "Spot the Error",
+     "w": "1.8",
+     "tip": ""
+    },
+    {
+     "n": "Spelling",
+     "w": "1.8",
+     "tip": "Correctly or incorrectly spelt word"
+    },
+    {
+     "n": "Sentence Improvement",
+     "w": "1.7",
+     "tip": ""
+    },
+    {
+     "n": "One Word Substitution",
+     "w": "1.7",
+     "tip": ""
+    },
+    {
+     "n": "Idioms & Phrases",
+     "w": "1.4",
+     "tip": ""
+    },
+    {
+     "n": "Antonyms",
+     "w": "1.2",
+     "tip": ""
+    },
+    {
+     "n": "Cloze Test",
+     "w": "under 1",
+     "tip": ""
+    }
+   ]
+  }
+ ],
+ "weightNote": "Average questions per paper, counted from 24 shifts of CGL 2025, the first year under the new exam vendor and the closest match to your paper."
+}
