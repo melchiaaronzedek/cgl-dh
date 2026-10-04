@@ -18,7 +18,7 @@ function examLabel(o) { return EXAM.toLocaleDateString("en-IN", o || { weekday: 
 /* business details shown on the legal pages and the checkout; fill before launch */
 var SITE = { brand: "CGL Compass", owner: "CGL Compass", email: "support@cglcompass.in", city: "Visakhapatnam, Andhra Pradesh" };
 var FIGV = "1790419676";
-var DATAV = "2610040139";                                // bump when data/ changes
+var DATAV = "2610042012";                                // bump when data/ changes
 /* last year's Tier 1 cut-off, for the score chart. Filled from research. */
 var CUTOFF = { ur: 136.40, label: "CGL 2025, all other posts, normalised" };
 
@@ -2123,10 +2123,24 @@ function spark(vals, max) {
   return '<svg class="spark" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true"><polyline points="' + pts.join(" ") + '"/>' +
     '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="2.6"/></svg>';
 }
+/* the 2026 shifts so far: repeats, patterns and per-topic counts (tools/analyse2026.py) */
+function y26band(Y) {
+  return '<section class="band tstep" id="an-2026"><div class="band-h"><h2 class="sec-h reveal">' + h(Y.h) + '</h2>' +
+      '<span class="muted reveal">' + h(Y.basis) + '</span></div>' +
+    '<p class="muted reveal" style="margin:0 0 18px;max-width:62ch">' + h(Y.lede) + '</p>' +
+    '<div class="stats reveal">' + Y.stats.map(function (x) {
+      return '<div class="stat"><div class="k">' + h(x.k) + '</div><div class="v">' + h(x.v) + (x.of ? '<small> / ' + h(x.of) + '</small>' : '') + '</div>' +
+        '<div class="s">' + h(x.s) + '</div></div>';
+    }).join("") + '</div>' +
+    '<div class="notes study-ish">' + Y.insights.map(function (x, i) {
+      return '<details class="note ins reveal"' + (i ? '' : ' open') + '><summary><h3>' + h(x.h) + '</h3></summary><ul class="pts">' +
+        x.points.map(function (p) { return '<li>' + h(p) + '</li>'; }).join("") + '</ul></details>';
+    }).join("") + '</div></section>';
+}
 V["analysis"] = function () {
   var A = D.analysis;
   if (!A) return '<section class="head"><h1 class="page-h">Analysis.</h1><p class="lede">Being compiled.</p></section>' + foot();
-  var yrs = A.years;
+  var yrs = A.years, Y = A.y2026, now = function (s, t) { var v = Y && Y.topics[s] && Y.topics[s][t]; return v == null ? '·' : v.toFixed(1); };
   var guess = ((D.meta && D.meta.papers) || D.papers).filter(function (p) { return p.guess; });
   return '<section class="head">' +
       '<span class="kicker reveal">' + h(A.basis) + '</span>' +
@@ -2135,7 +2149,7 @@ V["analysis"] = function () {
       (guess.length ? '<div class="reveal" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">' + guess.map(function (p, i) {
         return '<a class="btn ' + (i ? 'quiet' : 'key') + '" href="#/mock/' + encodeURIComponent(p.id) + '">' + (paperOpen(p.id) ? '' : LOCK) + h(p.label) + arr() + '</a>';
       }).join("") + '</div>' : '') +
-    '</section>' +
+    '</section>' + (Y ? y26band(Y) : '') +
     '<nav class="chips reveal" style="margin-top:6px">' + SECS.map(function (x) { return '<a class="chip" href="#an-' + x.k + '" data-jump="an-' + x.k + '">' + x.short + '</a>'; }).join("") + '</nav>' +
     SECS.map(function (sec) {
       var rows = (A.sections[sec.k] || []);
@@ -2147,10 +2161,11 @@ V["analysis"] = function () {
           return '<details class="note ins reveal"' + '><summary><h3>' + h(x.h) + '</h3></summary><ul class="pts">' + x.points.map(function (p) { return '<li>' + h(p) + '</li>'; }).join("") + '</ul></details>';
         }).join("") + '</div>' : '') +
         '<div class="atbl reveal"><table><thead><tr><td>Topic</td>' + yrs.map(function (y, i) { return '<td class="n' + (i < yrs.length - 2 ? ' old' : '') + '">' + String(y).slice(2) + '</td>'; }).join("") +
-          '<td>Trend</td><td class="n p">2026</td></tr></thead><tbody>' +
+          (Y ? '<td class="n">26</td>' : '') + '<td>Trend</td><td class="n p">Expect</td></tr></thead><tbody>' +
           rows.map(function (r) {
             return '<tr><td><a href="' + learnHref(sec.k, r.t) + '">' + h(r.t) + '</a>' + (r.note ? '<span>' + h(r.note) + '</span>' : '') + '</td>' +
               yrs.map(function (y, i) { var v = r.y[y]; return '<td class="n' + (i < yrs.length - 2 ? ' old' : '') + '">' + (v == null ? '·' : v.toFixed(1)) + '</td>'; }).join("") +
+              (Y ? '<td class="n">' + now(sec.k, r.t) + '</td>' : '') +
               '<td>' + spark(yrs.map(function (y) { return r.y[y] || 0; }), max) + '</td>' +
               '<td class="n p"><b>' + r.pred + '</b>' + (r.trend ? '<i class="tr ' + r.trend + '">' + (r.trend === "up" ? "▲" : r.trend === "down" ? "▼" : "") + '</i>' : '') + '</td></tr>';
           }).join("") + '</tbody></table></div></section>';
