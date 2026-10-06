@@ -18,7 +18,7 @@ function examLabel(o) { return EXAM.toLocaleDateString("en-IN", o || { weekday: 
 /* business details shown on the legal pages and the checkout; fill before launch */
 var SITE = { brand: "CGL Compass", owner: "CGL Compass", email: "support@cglcompass.in", city: "Visakhapatnam, Andhra Pradesh" };
 var FIGV = "1790419676";
-var DATAV = "2610042012";                                // bump when data/ changes
+var DATAV = "2610061103";                                // bump when data/ changes
 /* last year's Tier 1 cut-off, for the score chart. Filled from research. */
 var CUTOFF = { ur: 136.40, label: "CGL 2025, all other posts, normalised" };
 

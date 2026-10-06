@@ -5,7 +5,7 @@
    this device only; #save-progress downloads it. Built into build/dh-site/ by tools/dh_build.mjs. */
 (function () {
   "use strict";
-  var NAME = "DH", SLUG = "dh", VER = "fb9632b86a";
+  var NAME = "DH", SLUG = "dh", VER = "b455ea4cf8";
   var ENT = { premium: true, admin: false, until: Date.UTC(2099, 0, 1), pdf: false, paid: true, trial: false, trialUntil: 0 };
   var PLANS = {
     pass: { key: "pass", price: 5000, currency: "INR", days: 30, label: "Exam Pass, 30 days" },
