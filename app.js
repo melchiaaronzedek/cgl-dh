@@ -18,7 +18,7 @@ function examLabel(o) { return EXAM.toLocaleDateString("en-IN", o || { weekday: 
 /* business details shown on the legal pages and the checkout; fill before launch */
 var SITE = { brand: "CGL Compass", owner: "CGL Compass", email: "support@cglcompass.in", city: "Visakhapatnam, Andhra Pradesh" };
 var FIGV = "1790419676";
-var DATAV = "2610061103";                                // bump when data/ changes
+var DATAV = "2610061210";                                // bump when data/ changes
 /* last year's Tier 1 cut-off, for the score chart. Filled from research. */
 var CUTOFF = { ur: 136.40, label: "CGL 2025, all other posts, normalised" };
 
@@ -696,9 +696,11 @@ function quiz(cfg) {
   });
   host.__pads = function () {
     if (cfg.hide) return '<h4>Questions</h4><div class="pads" id="pads"></div>';
-    return '<h4>Questions</h4><div class="pads" id="pads"></div>' +
-      '<div class="pq-side"><button class="btn quiet sm" data-jump="open">Next unanswered</button><button class="btn quiet sm" data-jump="wrong">Review a wrong one</button></div>' +
+    var side = '<div class="pq-side"><button class="btn quiet sm" data-jump="open">Next unanswered</button><button class="btn quiet sm" data-jump="wrong">Review a wrong one</button></div>' +
       '<p class="pq-legend"><i class="ok"></i>Right <i class="no"></i>Wrong <i></i>Not tried</p>';
+    // on a phone the palette sits under the question: the jumps come first and the grid stays folded
+    if (innerWidth <= 900) return side + '<details class="pads-fold"><summary><h4>All ' + cfg.qs.length + ' questions</h4></summary><div class="pads" id="pads"></div></details>';
+    return '<h4>Questions</h4><div class="pads" id="pads"></div>' + side;
   };
   host.__drawPads = drawPads;
   draw();
@@ -977,6 +979,11 @@ V[""] = function () {
       w.done >= 3 ? w.acc + "% accurate across " + w.done + " attempts. Your weakest topic that carries marks." : w.n + " past questions, not yet started."]);
   });
   if (next.length < 3) next.push(["#/cards", "Flashcards", "Vocab, idioms and static GK. Ten minutes whenever you are between blocks."]);
+  var nextHTML = '<section class="band next-up"><h2 class="sec-h reveal">Do this next</h2>' +
+      '<div class="list" style="margin-top:22px">' + next.slice(0, 4).map(function (x, i) {
+        return '<a class="item reveal" href="' + x[0] + '"><span class="num">' + (i + 1) + '</span>' +
+          '<span><span class="t">' + h(x[1]) + '</span><span class="d">' + h(x[2]) + '</span></span></a>';
+      }).join("") + '</div></section>';
 
   return modeSwitch() + '<section class="head hero">' +
     '<div class="hero-t">' +
@@ -987,6 +994,7 @@ V[""] = function () {
     '<figure class="hero-g reveal">' + rings(ring) + ringLegend(ring) + '</figure>' +
     '</section>' +
 
+    nextHTML +
     '<div class="stats reveal">' +
       '<div class="stat"><div class="k">Last mock</div><div class="v">' + (last ? last.s.marks.toFixed(1) + '<small> / 200</small>' : '—') + '</div>' +
         '<div class="s">' + (last ? hist.length + ' mock' + (hist.length === 1 ? '' : 's') + ' taken' : 'none yet') + '</div></div>' +
@@ -998,12 +1006,7 @@ V[""] = function () {
         '<div class="s">three right in a row</div></div>' +
     '</div>' +
 
-    t2Band("home") +
-    '<section class="band"><h2 class="sec-h reveal">Do this next</h2>' +
-      '<div class="list" style="margin-top:22px">' + next.slice(0, 4).map(function (x, i) {
-        return '<a class="item reveal" href="' + x[0] + '"><span class="num">' + (i + 1) + '</span>' +
-          '<span><span class="t">' + h(x[1]) + '</span><span class="d">' + h(x[2]) + '</span></span></a>';
-      }).join("") + '</div></section>' + foot();
+    t2Band("home") + foot();
 };
 
 /* ── plan ── */
@@ -1022,8 +1025,8 @@ V["plan"] = function () {
   var done = ids.filter(function (k) { return ST.plan[k]; }).length, total = ids.length;
   var today = todayIndex();
   return '<section class="head">' +
-      '<span class="kicker reveal">' + done + ' of ' + total + ' done</span>' +
-      '<h1 class="page-h reveal">' + P.N + ' day' + (P.N === 1 ? '' : 's') + ' to ' + h(examLabel({ day: "numeric", month: "long" })) + '.</h1>' +
+      '<span class="kicker reveal">Day ' + (today + 1) + ' of ' + P.N + ' · ' + done + ' of ' + total + ' done</span>' +
+      '<h1 class="page-h reveal">' + days() + ' day' + (days() === 1 ? '' : 's') + ' to ' + h(examLabel({ day: "numeric", month: "long" })) + '.</h1>' +
       '<p class="lede reveal">Built for ' + ((ST.profile || {}).hours || 6) + ' hours a day. Topics come heaviest first, notes and a lesson before their past questions; the last days are revision, a dress rehearsal and rest.</p>' +
       '<div class="track reveal" style="max-width:320px;margin-top:22px"><i style="--p:' + (pc(done, total) / 100) + '"></i></div>' +
       '<div class="reveal" style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn quiet sm" href="#/welcome">Change date or hours' + arr() + '</a><a class="btn quiet sm" href="#/tier2/plan">Tier 2 plan' + arr() + '</a></div>' +
@@ -3884,6 +3887,22 @@ function svgSafe(src) {
     return new XMLSerializer().serializeToString(root);
   } catch (e) { return ""; }
 }
+/* tap a diagram to see it large: the same SVG, full width, panned by hand */
+document.addEventListener("click", function (e) {
+  var s = e.target.closest ? e.target.closest(".fig-s") : null;
+  if (!s || s.closest(".figzoom") || e.target.closest("a,button")) return;
+  var svg = s.querySelector("svg"); if (!svg) return;
+  var z = document.createElement("div"); z.className = "figzoom"; z.setAttribute("role", "dialog"); z.setAttribute("aria-label", "Diagram, enlarged");
+  var wrap = s.closest("figure, .nb-sol"), cap = wrap && (wrap.querySelector("figcaption") || wrap.querySelector(".nb-t") || wrap.querySelector(".sol-q"));
+  z.innerHTML = '<button class="fz-x" type="button">Close</button><div class="fz-in fig-s"></div><p class="fz-c"></p>';
+  z.querySelector(".fz-in").appendChild(svg.cloneNode(true));
+  if (cap) z.querySelector(".fz-c").textContent = cap.textContent;
+  function close() { z.remove(); document.removeEventListener("keydown", onk); }
+  function onk(ev) { if (ev.key === "Escape") close(); }
+  z.addEventListener("click", function (ev) { if (ev.target === z || ev.target.classList.contains("fz-x") || ev.target.classList.contains("fz-c")) close(); });
+  document.addEventListener("keydown", onk);
+  document.body.appendChild(z); z.querySelector(".fz-x").focus();
+});
 /* a past question worked in full: try it first, then open the steps */
 function solveHTML(b) {
   var L = "ABCD", a = String(b.a || "").trim(), o = b.o || [];
