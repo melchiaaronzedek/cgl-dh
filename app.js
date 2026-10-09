@@ -18,7 +18,7 @@ function examLabel(o) { return EXAM.toLocaleDateString("en-IN", o || { weekday: 
 /* business details shown on the legal pages and the checkout; fill before launch */
 var SITE = { brand: "CGL Compass", owner: "CGL Compass", email: "support@cglcompass.in", city: "Visakhapatnam, Andhra Pradesh" };
 var FIGV = "1790419676";
-var DATAV = "2610091920";                                // bump when data/ changes
+var DATAV = "2610091952";                                // bump when data/ changes
 /* last year's Tier 1 cut-off, for the score chart. Filled from research. */
 var CUTOFF = { ur: 136.40, label: "CGL 2025, all other posts, normalised" };
 
@@ -99,11 +99,11 @@ function save() {
 
 var D = { papers: [], syllabus: { sections: [] }, cards: [], sources: [], videos: [] };
 function load() {
-  return Promise.all(["papers", "syllabus", "cards", "sources", "videos", "library", "ca", "topicvideos", "analysis", "meta"].map(function (k) {
+  return Promise.all(["papers", "syllabus", "cards", "sources", "videos", "library", "ca", "topicvideos", "analysis", "lastday", "meta"].map(function (k) {
     if (k === "meta" && D.meta) return null;   // the front door fetched it already
     return fetch("data/" + k + ".json?v=" + DATAV).then(function (r) {
       // the last three are optional: a page without them still works
-      if (!r.ok) { if (/library|ca|topicvideos|analysis|meta/.test(k)) return null; throw new Error(k + ".json returned " + r.status); }
+      if (!r.ok) { if (/library|ca|topicvideos|analysis|lastday|meta/.test(k)) return null; throw new Error(k + ".json returned " + r.status); }
       return r.json();
     }).then(function (j) { if (j != null) D[k] = j; });
   })).then(buildDecks);
@@ -1026,6 +1026,7 @@ V[""] = function () {
     '<figure class="hero-g reveal">' + rings(ring) + ringLegend(ring) + '</figure>' +
     '</section>' +
 
+    (D.lastday && d <= 3 ? '<a class="ld-band reveal" href="#/lastday"><span class="ld-k">' + (d === 0 ? 'Exam day' : d === 1 ? 'Exam tomorrow' : d + ' days to go') + '</span><b>The last-day sheet</b><span class="d">Only what the 2026 shifts asked, with the fastest way to do each. Read it tonight and once more in the morning.</span></a>' : '') +
     nextHTML +
     '<div class="stats reveal">' +
       '<div class="stat"><div class="k">Last mock</div><div class="v">' + (last ? last.s.marks.toFixed(1) + '<small> / 200</small>' : '—') + '</div>' +
@@ -2176,6 +2177,61 @@ function y26band(Y) {
         x.points.map(function (p) { return '<li>' + h(p) + '</li>'; }).join("") + '</ul></details>';
     }).join("") + '</div></section>';
 }
+/* ══════════ the last-day sheet: what the 2026 shifts asked, the fastest way to do each ══════════ */
+V["lastday"] = function () {
+  var L = D.lastday;
+  if (!L) return '<section class="head"><h1 class="page-h">Last-day sheet.</h1><p class="lede">Being compiled.</p></section>' + foot();
+  var SN = { R: "Reasoning", Q: "Quant", E: "English" }, LT = "ABCD";
+  function ex(e) {
+    if (!e || !e.q) return "";
+    return '<div class="ld-ex"><span class="ld-k">A 2026 question · about ' + h(String(e.sec || 60)) + ' seconds</span><p class="ld-q">' + h(e.q).replace(/\n/g, "<br>") + '</p>' +
+      '<ol class="sol-o">' + (e.o || []).map(function (o, k) { return '<li' + (k === e.a ? ' class="ok"' : '') + '><b>' + LT[k] + '</b><span>' + h(o) + '</span></li>'; }).join("") + '</ol>' +
+      '<details class="sol-d"><summary><span>The fast solution</span></summary><ol class="sol-st">' + (e.steps || []).map(function (s) { return '<li>' + h(s) + '</li>'; }).join("") + '</ol>' +
+      '<p class="sol-a"><span>Answer</span><b>' + h(LT[e.a] + ". " + (e.o || [])[e.a]) + '</b></p></details></div>';
+  }
+  function card(c, i) {
+    return '<article class="ld-card reveal"><h3><span class="ld-n">' + (i + 1) + '</span>' + h(c.t) + (c.per ? '<small>' + h(c.per) + '</small>' : '') + '</h3>' +
+      ((c.forms || []).length ? '<p class="ld-forms">' + c.forms.map(h).join(' · ') + '</p>' : '') +
+      ((c.formulas || []).length ? '<div class="ld-fx">' + c.formulas.map(function (f) { return '<code>' + h(f) + '</code>'; }).join("") + '</div>' : '') +
+      '<ul class="pts ld-trick">' + (c.trick || []).map(function (t) { return '<li>' + h(t) + '</li>'; }).join("") + '</ul>' + ex(c.ex) + '</article>';
+  }
+  function list(items) { return '<ul class="pts ld-trick">' + items.map(function (t) { return '<li>' + h(t) + '</li>'; }).join("") + '</ul>'; }
+  var S = L.strategy || {}, V = L.vocab || {}, nav = [["ld-plan", "Exam-day plan"], ["ld-R", "Reasoning"], ["ld-Q", "Quant"], ["ld-E", "English"], ["ld-vocab", "Words asked"], ["ld-ga", "GA facts"], ["ld-rep", "Asked twice"], ["ld-pattern", "The pattern"]];
+  return '<section class="head">' +
+      '<span class="kicker reveal">Exam day · ' + h(examLabel({ day: "numeric", month: "long" })) + ' · ' + h(L.basis || "") + '</span>' +
+      '<h1 class="page-h reveal">The last-day sheet.</h1>' +
+      '<p class="lede reveal">Only what the ten 2026 shifts asked, with the fastest way to do each. Read it tonight and once more in the morning; nothing new after that.</p>' +
+      '<div class="reveal" style="margin-top:18px"><button class="btn quiet sm" type="button" data-print>Print or save as PDF</button></div>' +
+    '</section>' +
+    '<nav class="chips reveal" style="margin-top:6px">' + nav.map(function (x) { return '<a class="chip" href="#' + x[0] + '" data-jump="' + x[0] + '">' + x[1] + '</a>'; }).join("") + '</nav>' +
+    '<section class="band tstep" id="ld-plan"><h2 class="sec-h reveal">Exam-day plan</h2>' +
+      '<div class="ld-cols">' + [["The clock", S.clock], ["Tonight", S.night], ["In the hall", S.hall]].map(function (x) { return '<div class="ld-card reveal"><h3>' + x[0] + '</h3>' + list(x[1] || []) + '</div>'; }).join("") + '</div></section>' +
+    ["R", "Q", "E"].map(function (k) {
+      var cs = (L.cards || {})[k] || [];
+      return '<section class="band tstep" id="ld-' + k + '"><div class="band-h"><h2 class="sec-h reveal">' + SN[k] + '</h2><span class="muted reveal">' + cs.length + ' sure topics, surest first</span></div>' +
+        (cs.length ? cs.map(card).join("") : '<p class="muted">Being compiled.</p>') + '</section>';
+    }).join("") +
+    '<section class="band tstep" id="ld-vocab"><div class="band-h"><h2 class="sec-h reveal">Every word asked this year</h2><span class="muted reveal">' + Object.keys(V).reduce(function (a, k) { return a + V[k].length; }, 0) + ' items</span></div>' +
+      '<div class="ld-vocab">' + ["Synonyms", "Antonyms", "Idioms & Phrases", "One Word Substitution", "Spelling"].filter(function (k) { return (V[k] || []).length; }).map(function (k) {
+        return '<div class="ld-card reveal"><h4>' + h(k) + ' <small>' + V[k].length + '</small></h4><ul>' + V[k].map(function (w) { return '<li><b>' + h(w[0]) + '</b>' + (w[1] ? ' <span class="ld-arr">→</span> ' + h(w[1]) : '') + '</li>'; }).join("") + '</ul></div>';
+      }).join("") + '</div></section>' +
+    '<section class="band tstep" id="ld-ga"><div class="band-h"><h2 class="sec-h reveal">General Awareness: every fact asked this year</h2><span class="muted reveal">' + (L.ga || []).reduce(function (a, g) { return a + g.n; }, 0) + ' facts, by theme</span></div>' +
+      (L.ga || []).map(function (g, i) {
+        return '<details class="ld-theme reveal"' + (i < 2 ? ' open' : '') + '><summary>' + h(g.theme) + ' <small>' + g.n + '</small></summary><ol class="ld-facts">' +
+          g.facts.map(function (f) { return '<li' + (f.rep ? ' class="hot"' : '') + '>' + h(f.fact) + (f.rep ? ' <span class="pyq rep">Repeated</span>' : '') + '</li>'; }).join("") + '</ol></details>';
+      }).join("") + '</section>' +
+    '<section class="band tstep" id="ld-rep"><div class="band-h"><h2 class="sec-h reveal">Asked twice this year</h2><span class="muted reveal">' + (L.repeats || []).length + ' questions that came back in another shift</span></div>' +
+      (L.repeats || []).map(function (r) {
+        return '<article class="kp-q reveal"><div class="qbar"><span class="c">' + h(SN[r.s] || "GA") + ' · ' + h(r.t) + repChip({ id: r.id, rep: r.also }) + '</span></div><div class="qstem"><p>' + h(r.q).replace(/\n/g, "<br>") + '</p></div>' +
+          '<div class="opts kp-o">' + r.o.map(function (o, k) { return '<div class="opt' + (k === r.a ? ' ok' : '') + '"><em>' + LT[k] + '</em><span>' + h(o) + '</span></div>'; }).join("") + '</div>' +
+          '<details class="sol-d"><summary><span>Solution</span></summary><p class="sol-tr">' + h(r.e).replace(/\n/g, "<br>") + '</p></details></article>';
+      }).join("") + '</section>' +
+    '<section class="band tstep" id="ld-pattern"><div class="band-h"><h2 class="sec-h reveal">The 2026 pattern</h2><span class="muted reveal">questions per paper, and how many of the ' + (L.pattern && L.pattern.length ? '10' : '') + ' sets had the topic</span></div>' +
+      (L.pattern || []).map(function (s) {
+        return '<div class="ld-card reveal"><h3>' + h(s.name) + '</h3><div class="atbl" style="margin-top:10px"><table><thead><tr><td>Topic</td><td class="n">Per paper</td><td class="n">Sets</td></tr></thead><tbody>' +
+          s.rows.map(function (r) { return '<tr><td>' + h(r.t) + '</td><td class="n">' + r.per.toFixed(1) + '</td><td class="n">' + r.sets + '</td></tr>'; }).join("") + '</tbody></table></div></div>';
+      }).join("") + '</section>' + foot();
+};
 V["analysis"] = function () {
   var A = D.analysis;
   if (!A) return '<section class="head"><h1 class="page-h">Analysis.</h1><p class="lede">Being compiled.</p></section>' + foot();
@@ -2795,6 +2851,7 @@ V["more"] = function () {
     ["#/tier2", "Tier 2", "Real Tier 2 mocks, Computer, Statistics and Paper III notes, typing trainer"],
     ["#/tier2/plan", "Tier 2 plan", t2Prof() ? "Your plan to " + t2Prof().exam : "Build a day-by-day plan for Tier 2"],
     ["#/cutoffs", "Cut-offs", "Every Tier 1 cut-off since 2017 and a 2026 estimate"],
+    ["#/lastday", "Last-day sheet", "What the 2026 shifts asked and the fastest way to do each"],
     ["#/analysis", "Analysis & guess paper", "Five years of papers, what repeats, and a predicted paper"],
     ["#/errors", "Error log", (errList().length || "No") + " questions to clear"],
     ["#/cards", "Flashcards", cardList().length + " cards, spaced by how well you know them"],
@@ -3923,6 +3980,7 @@ function svgSafe(src) {
     return new XMLSerializer().serializeToString(root);
   } catch (e) { return ""; }
 }
+document.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("[data-print]")) window.print(); });
 /* tap a diagram to see it large: the same SVG, full width, panned by hand */
 document.addEventListener("click", function (e) {
   var s = e.target.closest ? e.target.closest(".fig-s") : null;
@@ -5279,6 +5337,7 @@ function route() {
   else if (p[0] === "ca") { key = "ca"; args = [p[1], p[2]]; }
   else if (p[0] === "more") key = "more";
   else if (p[0] === "analysis") key = "analysis";
+  else if (p[0] === "lastday") key = "lastday";
   else if (p[0] === "cutoffs") key = "cutoffs";
   else if (p[0] === "tier2") { key = "tier2"; args = [p[1], p[2] && decodeURIComponent(p[2]), p[3]]; }
   else if (p[0] === "welcome") key = "welcome";
@@ -5302,7 +5361,7 @@ function route() {
   document.body.classList.toggle("lp", key === "landing");
   if (key !== "landing" && window.__lenis) { try { window.__lenis.destroy(); } catch (e) {} window.__lenis = null; }
   var TITLES = { landing: "", "": "Overview", plan: "Your plan", mocks: "Mocks", mock: "Mock", mockrun: "Mock in progress", mockresult: "Mock result", mockreview: "Mock review", mockpaper: "Question paper with answers",
-    practice: "Practice", errors: "Error log", learn: "Learn", videos: "Videos", library: "Library", ca: "Current affairs", analysis: "Analysis and guess paper", welcome: "Your exam date",
+    practice: "Practice", errors: "Error log", learn: "Learn", videos: "Videos", library: "Library", ca: "Current affairs", analysis: "Analysis and guess paper", lastday: "Last-day sheet", welcome: "Your exam date",
     premium: "Exam Pass, ₹50 for 30 days", admin: "Admin", legal: { terms: "Terms of use", privacy: "Privacy policy", refunds: "Refunds", contact: "Contact" }[args[0]] || "Legal",
     pdf: "Reader", more: "More", sources: "Sources", progress: "Progress", cards: "Flashcards", account: AU ? "Account" : "Sign in", cutoffs: "SSC CGL cut-offs, 2017 to 2026", tier2: "Tier 2", 404: "Not found" };
   var tt = TITLES[key];
