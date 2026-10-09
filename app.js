@@ -18,7 +18,7 @@ function examLabel(o) { return EXAM.toLocaleDateString("en-IN", o || { weekday: 
 /* business details shown on the legal pages and the checkout; fill before launch */
 var SITE = { brand: "CGL Compass", owner: "CGL Compass", email: "support@cglcompass.in", city: "Visakhapatnam, Andhra Pradesh" };
 var FIGV = "1790419676";
-var DATAV = "2610091910";                                // bump when data/ changes
+var DATAV = "2610091920";                                // bump when data/ changes
 /* last year's Tier 1 cut-off, for the score chart. Filled from research. */
 var CUTOFF = { ur: 136.40, label: "CGL 2025, all other posts, normalised" };
 
@@ -473,6 +473,37 @@ function logAnswer(q, v) {
   if (v !== q.a) { ST.err[q.id] = { n: (e ? e.n : 0) + 1, ok: 0, t: Date.now() }; return; }
   if (e) { e.ok++; if (e.ok >= 2) delete ST.err[q.id]; }
 }
+/* the same question recalled in more than one 2026 set: SSC repeats itself, so it earns a chip */
+function repChip(q) {
+  if (!q || !q.rep || !q.rep.length) return "";
+  var mine = String(q.id || "").slice(0, 10), days = {};
+  q.rep.forEach(function (id) { var d = id.slice(0, 10); if (d !== mine) days[d] = 1; });
+  var n = Object.keys(days).length;
+  var who = q.rep.map(function (id) { var p = paperOf(qById(id) || {}); return p && p.label ? p.label : id.slice(0, 10); });
+  return ' <span class="pyq rep" title="' + h("Also asked: " + who.join("; ")) + '">' + (n ? "Repeated on " + n + " other day" + (n === 1 ? "" : "s") : "Recalled twice") + '</span>';
+}
+/* every repeated question once, newest first */
+function repList() {
+  var seen = {}, out = [];
+  allQs().filter(function (q) { return q.rep && q.rep.length && !isGuess(q); })
+    .sort(function (a, b) { return String((paperOf(b) || {}).date || "").localeCompare(String((paperOf(a) || {}).date || "")); })
+    .forEach(function (q) { if (seen[q.id]) return; out.push(q); seen[q.id] = 1; q.rep.forEach(function (id) { seen[id] = 1; }); });
+  return out;
+}
+function repRun() {
+  var qs = repList();
+  if (!qs.length) { location.hash = "#/mocks"; return blank(); }
+  var host = quiz({
+    qs: qs, back: "#/mocks", backLabel: "Mocks",
+    head: '<p class="muted" style="margin:0 0 8px">Recalled in more than one 2026 shift or set, newest first. Each shows where else it was asked.</p>',
+    get: function (k) { var v = ST.prac[qs[k].id]; return v == null ? null : v; },
+    set: function (k, v) { ST.prac[qs[k].id] = v; logAnswer(qs[k], v); save(); },
+    startAt: function () { for (var k = 0; k < qs.length; k++) if (ST.prac[qs[k].id] == null) return k; return 0; },
+    done: function () { location.hash = "#/mocks"; }
+  });
+  setAside(host.__pads());
+  return host;
+}
 function errList() {
   return Object.keys(ST.err).map(function (id) {
     var q = qById(id); return q ? { q: q, e: ST.err[id] } : null;
@@ -608,7 +639,7 @@ function quiz(cfg) {
         (sm.d ? '<span><b>' + Math.round(sm.r / sm.d * 100) + '%</b> accuracy</span>' : '') + '<span class="pq-keys"><kbd>1</kbd>–<kbd>4</kbd> answer · <kbd>→</kbd> next · <kbd>N</kbd> next unanswered</span></div>' : '') +
       '<div class="qbar" style="margin-top:16px"><span class="c">Question ' + (i + 1) + ' of ' + cfg.qs.length +
         // practice says where a question came from; a mock stays as bare as the hall
-        (!cfg.hide && q.t ? ' · ' + h(q.t) : '') + (!cfg.hide && q.src ? ' · ' + h(q.src) : '') + '</span>' +
+        (!cfg.hide && q.t ? ' · ' + h(q.t) : '') + (!cfg.hide && q.src ? ' · ' + h(q.src) : '') + (!cfg.hide ? repChip(q) : '') + '</span>' +
         (cfg.secs ? '<span class="clock" id="clk">00:00</span>' : '') + '</div>' +
       brief +
       '<div class="qstem">' + stemHTML(q) + '</div>' +
@@ -967,7 +998,8 @@ V[""] = function () {
     { k: "Accuracy", p: t.acc / 100, n: t.acc, v: t.acc + "%", suffix: "%" },
     { k: "Cards", p: cardPct() / 100, n: cardPct(), v: cardPct() + "%", suffix: "%" }
   ];
-  var next = [];
+  var next = [], nRep = repList().length;
+  if (nRep) next.push(["#/practice/repeats", nRep + " questions SSC asked more than once this year", "Recalled in two or more 2026 shifts or sets. The likeliest to come back; do them first."]);
   if (!hist.length) next.push(["#/mocks", "Sit your first full mock", "One past paper under the 2026 rules: four sections, 15 minutes each, minus half a mark per miss. It tells you where the next fifteen days go."]);
   if (nErr) next.push(["#/errors", nErr + " question" + (nErr === 1 ? "" : "s") + " in your error log", "Each one leaves the log after you get it right twice in a row."]);
   weak.forEach(function (w) {
@@ -1062,7 +1094,10 @@ V["mocks"] = function () {
         memo.forEach(function (p) { var d = p.id.slice(0, 10); if (!days[d]) { days[d] = []; order.push(d); } days[d].push(p); });
         order.sort().reverse();
         var rest = byYear[y].filter(function (p) { return !p.memo; });
+        var nRep = repList().length;
         return '<section class="band"><h2 class="sec-h reveal">' + y + ' <small class="muted">memory-based, day by day</small></h2>' +
+          (nRep ? '<div class="list reveal" style="margin:0 0 22px"><a class="item" href="#/practice/repeats"><span class="num">' + nRep + '</span><span><span class="t">Asked more than once this year <span class="pyq rep">Repeated</span></span>' +
+            '<span class="d">The same question recalled in two or more 2026 shifts or sets. The likeliest to come back; practise these first.</span></span></a></div>' : '') +
           order.map(function (d) {
             var ps = days[d].sort(function (a, b) { return a.id < b.id ? -1 : 1; });
             var dl = (ps[0].label.split(",")[0] || d);
@@ -1149,7 +1184,7 @@ V["mockpaper"] = function (pid) {
     secs.map(function (x) {
       return '<section class="band kp-sec" id="kp-' + x.k + '"><h2 class="sec-h">' + h(x.name) + '</h2>' + by[x.k].map(function (q) {
         n++;
-        return '<article class="kp-q"><div class="qbar"><span class="c">Q' + n + (q.t ? ' · ' + h(q.t) : '') + '</span></div>' +
+        return '<article class="kp-q"><div class="qbar"><span class="c">Q' + n + (q.t ? ' · ' + h(q.t) : '') + repChip(q) + '</span></div>' +
           '<div class="qstem">' + stemHTML(q) + '</div>' +
           '<div class="opts kp-o">' + q.o.map(function (o, k) {
             return '<div class="opt' + (k === q.a ? ' ok' : '') + '"><em>' + "ABCDE"[k] + '</em><span>' + optHTML(o) + '</span>' + (k === q.a ? '<b class="mk ok" aria-label="Correct answer">✓</b>' : '') + '</div>';
@@ -1267,6 +1302,7 @@ V["mockreview"] = function (pid, practice) {
 
 /* ── topic practice ── */
 V["practice"] = function (sk, topic) {
+  if (sk === "repeats") return repRun();
   if (sk && topic) {
     var t = decodeURIComponent(topic);
     if (!topicOpen(sk, t)) return '<section class="head"><a class="kicker" href="#/practice">&#8592; All topics</a><h1 class="page-h reveal">' + h(t) + '</h1></section>' +
@@ -3790,7 +3826,7 @@ function q26Sheet(ids) {
     '<div class="q26-h"><b><span class="pyq y26">Asked 2026</span> ' + (qs.length > 1 ? qs.length + ' questions' : 'The question') + '</b><button class="q26-x" aria-label="Close">&#215;</button></div>' +
     qs.map(function (q) {
       var p = paperOf(q) || {};
-      return '<article class="kp-q"><div class="qbar"><span class="c">' + h(p.label || "") + (q.t ? ' · ' + h(q.t) : '') + '</span></div>' +
+      return '<article class="kp-q"><div class="qbar"><span class="c">' + h(p.label || "") + (q.t ? ' · ' + h(q.t) : '') + repChip(q) + '</span></div>' +
         '<div class="qstem">' + stemHTML(q) + '</div>' +
         '<div class="opts kp-o">' + q.o.map(function (o, k) { return '<div class="opt' + (k === q.a ? ' ok' : '') + '"><em>' + "ABCDE"[k] + '</em><span>' + optHTML(o) + '</span>' + (k === q.a ? '<b class="mk ok" aria-label="Correct answer">✓</b>' : '') + '</div>'; }).join("") + '</div>' +
         '<div class="why ok"><span class="t">Answer ' + "ABCDE"[q.a] + '</span><p>' + (q.e ? h(q.e).replace(/\n/g, "<br>") : optHTML(q.o[q.a])) + '</p></div>' +

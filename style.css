@@ -3429,6 +3429,9 @@ html.lenis,html.lenis body{height:auto}
 }
 /* Tier 2 past questions: their own colour next to the yellow Tier 1 mark */
 .pyq.t2{background:color-mix(in oklab,#7c5cff 18%,var(--surface));color:#5b3fd9}
+.pyq.rep{background:color-mix(in oklab,#ff9f0a 22%,var(--surface));color:#9a4d00}
+:root[data-theme="dark"] .pyq.rep{background:rgba(255,159,10,.22);color:#ffc266}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pyq.rep{background:rgba(255,159,10,.22);color:#ffc266}}
 :root[data-theme="dark"] .pyq.t2{background:rgba(155,130,255,.22);color:#c9b8ff}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pyq.t2{background:rgba(155,130,255,.22);color:#c9b8ff}}
 .nv-lsep{display:inline-block;width:1px;height:14px;margin:0 10px;vertical-align:-2px;background:var(--rule)}
